@@ -12,7 +12,7 @@
 #include "AY38910/Version.h"
 #include "SonSonVideo/Version.h"
 
-#define EMUVERSION "V0.1.5 2021-09-19"
+#define EMUVERSION "V0.1.5 2022-08-23"
 
 const fptr fnMain[] = {nullUI, subUI, subUI, subUI, subUI, subUI, subUI, subUI, subUI};
 
