@@ -1,0 +1,293 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXFileReference section */
+		359247301E4E695B00A12B3E /* io.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = io.s; sourceTree = "<group>"; };
+		35BA496A1886BBE3006870D9 /* Main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Main.c; sourceTree = "<group>"; };
+		746D78E114ED9A8400CC738F /* Makefile */ = {isa = PBXFileReference; explicitFileType = sourcecode.make; fileEncoding = 4; path = Makefile; sourceTree = "<group>"; };
+		9C175BD028B60C6C00293DA7 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		9C175BD128B60C6C00293DA7 /* AY38910ToDo.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = AY38910ToDo.txt; sourceTree = "<group>"; };
+		9C175BD228B60ED900293DA7 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		9C175BD328B60EEA00293DA7 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		9C175BD428B60EFF00293DA7 /* EmuSettings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EmuSettings.h; sourceTree = "<group>"; };
+		9C175BD528B60F0F00293DA7 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		9C28401A232D4E7B00C9DCFF /* gba_asm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gba_asm.h; sourceTree = "<group>"; };
+		9C3D5AF625E84AC300E8CD56 /* EmuFont.grit */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EmuFont.grit; sourceTree = "<group>"; };
+		9C3D5AF725E84AC300E8CD56 /* EmuFont.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EmuFont.png; sourceTree = "<group>"; };
+		9C41DD9722C7E4F100BD4C64 /* GUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GUI.h; sourceTree = "<group>"; };
+		9C41DD9822C7E4F100BD4C64 /* Main.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Main.h; sourceTree = "<group>"; };
+		9C41DD9922C7E4F100BD4C64 /* GUI.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = GUI.c; sourceTree = "<group>"; };
+		9C41DD9D22C7EADB00BD4C64 /* readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.txt; sourceTree = "<group>"; };
+		9C41DD9E22C7EADB00BD4C64 /* History.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = History.txt; sourceTree = "<group>"; };
+		9C41DDB522C7ECF200BD4C64 /* EmuMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmuMenu.h; sourceTree = "<group>"; };
+		9C41DDB822C7ECF200BD4C64 /* AsmExtra.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = AsmExtra.s; sourceTree = "<group>"; };
+		9C41DDB922C7ECF200BD4C64 /* AsmExtra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsmExtra.h; sourceTree = "<group>"; };
+		9C41DDBB22C7ECF200BD4C64 /* EmuMenu.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = EmuMenu.c; sourceTree = "<group>"; };
+		9C41DDBE22C7EEB300BD4C64 /* cpu.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = cpu.s; sourceTree = "<group>"; };
+		9C41DDBF22C7EEB300BD4C64 /* FileHandling.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = FileHandling.c; sourceTree = "<group>"; };
+		9C41DDC022C7EEB300BD4C64 /* FileHandling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileHandling.h; sourceTree = "<group>"; };
+		9C41DDC222C7EEB300BD4C64 /* Gfx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gfx.h; sourceTree = "<group>"; };
+		9C41DDC322C7EEB300BD4C64 /* io.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = io.h; sourceTree = "<group>"; };
+		9C41DDC622C7EEB300BD4C64 /* cpu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cpu.h; sourceTree = "<group>"; };
+		9C50825625D6A9DC00A8E1BA /* Emubase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Emubase.h; sourceTree = "<group>"; };
+		9C50825725D6A9DC00A8E1BA /* Equates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Equates.h; sourceTree = "<group>"; };
+		9C50825825D6A9F400A8E1BA /* Memory.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = Memory.s; sourceTree = "<group>"; };
+		9C50825925D6A9F400A8E1BA /* Cart.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = Cart.s; sourceTree = "<group>"; };
+		9C50825A25D6A9F400A8E1BA /* Cart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cart.h; sourceTree = "<group>"; };
+		9C50825B25D6A9F400A8E1BA /* Gfx.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = Gfx.s; sourceTree = "<group>"; };
+		9C50825C25D6A9F400A8E1BA /* Sound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sound.h; sourceTree = "<group>"; };
+		9C50825D25D6A9F400A8E1BA /* Sound.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = Sound.s; sourceTree = "<group>"; };
+		9C50827A25D8862C00A8E1BA /* Version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Version.h; sourceTree = "<group>"; };
+		9C50827B25D8862C00A8E1BA /* ARM6809.i */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c.preprocessed; path = ARM6809.i; sourceTree = "<group>"; };
+		9C50827C25D8862C00A8E1BA /* ARM6809.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARM6809.h; sourceTree = "<group>"; };
+		9C50827D25D8862C00A8E1BA /* ARM6809.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = ARM6809.s; sourceTree = "<group>"; };
+		9C50827E25D8862C00A8E1BA /* ARM6809mac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARM6809mac.h; sourceTree = "<group>"; };
+		9C50827F25D8862C00A8E1BA /* History.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = History.txt; sourceTree = "<group>"; };
+		9C50828025D8862C00A8E1BA /* ARM6809ToDo.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ARM6809ToDo.txt; sourceTree = "<group>"; };
+		9C50829D25DDBA3C00A8E1BA /* Version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Version.h; sourceTree = "<group>"; };
+		9C50829E25DDBA3C00A8E1BA /* AY38910.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = AY38910.s; sourceTree = "<group>"; };
+		9C50829F25DDBA3C00A8E1BA /* AY38910.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AY38910.h; sourceTree = "<group>"; };
+		9C5082A025DDBA3C00A8E1BA /* AY38910.i */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c.preprocessed; path = AY38910.i; sourceTree = "<group>"; };
+		9C5082A225DDBA3C00A8E1BA /* History.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = History.txt; sourceTree = "<group>"; };
+		9C5082A325DDBB8200A8E1BA /* SonSonGBA_todo.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SonSonGBA_todo.txt; sourceTree = "<group>"; };
+		9C5082A525DDBB9E00A8E1BA /* Version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Version.h; sourceTree = "<group>"; };
+		9C5082A625DDBB9E00A8E1BA /* SonSonVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SonSonVideo.h; sourceTree = "<group>"; };
+		9C5082A725DDBB9E00A8E1BA /* SonSonVideo.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = SonSonVideo.s; sourceTree = "<group>"; };
+		9C5082A825DDBB9E00A8E1BA /* SonSonVideo.i */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c.preprocessed; path = SonSonVideo.i; sourceTree = "<group>"; };
+		9C5082A925DDBB9E00A8E1BA /* History.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = History.txt; sourceTree = "<group>"; };
+		9C5082AA25DDBB9E00A8E1BA /* SonSonVideo_todo.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SonSonVideo_todo.txt; sourceTree = "<group>"; };
+		9C9CA7A525F26F7F00DC6DF5 /* SonSon.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SonSon.c; sourceTree = "<group>"; };
+		9C9CA7A625F26F7F00DC6DF5 /* SonSon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SonSon.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		742141B214E7EA40003EBFD3 = {
+			isa = PBXGroup;
+			children = (
+				9C5082A325DDBB8200A8E1BA /* SonSonGBA_todo.txt */,
+				9C41DD9E22C7EADB00BD4C64 /* History.txt */,
+				9C41DD9D22C7EADB00BD4C64 /* readme.txt */,
+				746D78E014ED9A6D00CC738F /* makefile */,
+				A48CC0251618E65200465E20 /* source */,
+				A4E891981889C882007ED6D7 /* graphics */,
+			);
+			sourceTree = "<group>";
+			usesTabs = 1;
+			wrapsLines = 0;
+		};
+		746D78E014ED9A6D00CC738F /* makefile */ = {
+			isa = PBXGroup;
+			children = (
+				746D78E114ED9A8400CC738F /* Makefile */,
+			);
+			name = makefile;
+			sourceTree = "<group>";
+		};
+		9C3D5AF525E84AC300E8CD56 /* graphics */ = {
+			isa = PBXGroup;
+			children = (
+				9C3D5AF625E84AC300E8CD56 /* EmuFont.grit */,
+				9C3D5AF725E84AC300E8CD56 /* EmuFont.png */,
+			);
+			path = graphics;
+			sourceTree = "<group>";
+		};
+		9C41DDB422C7ECF200BD4C64 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				9C3D5AF525E84AC300E8CD56 /* graphics */,
+				9C175BD528B60F0F00293DA7 /* README.md */,
+				9C41DDB522C7ECF200BD4C64 /* EmuMenu.h */,
+				9C41DDBB22C7ECF200BD4C64 /* EmuMenu.c */,
+				9C175BD428B60EFF00293DA7 /* EmuSettings.h */,
+				9C28401A232D4E7B00C9DCFF /* gba_asm.h */,
+				9C41DDB922C7ECF200BD4C64 /* AsmExtra.h */,
+				9C41DDB822C7ECF200BD4C64 /* AsmExtra.s */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		9C50827925D8862C00A8E1BA /* ARM6809 */ = {
+			isa = PBXGroup;
+			children = (
+				9C50828025D8862C00A8E1BA /* ARM6809ToDo.txt */,
+				9C175BD228B60ED900293DA7 /* README.md */,
+				9C50827F25D8862C00A8E1BA /* History.txt */,
+				9C50827A25D8862C00A8E1BA /* Version.h */,
+				9C50827C25D8862C00A8E1BA /* ARM6809.h */,
+				9C50827B25D8862C00A8E1BA /* ARM6809.i */,
+				9C50827E25D8862C00A8E1BA /* ARM6809mac.h */,
+				9C50827D25D8862C00A8E1BA /* ARM6809.s */,
+			);
+			path = ARM6809;
+			sourceTree = "<group>";
+		};
+		9C50829C25DDBA3C00A8E1BA /* AY38910 */ = {
+			isa = PBXGroup;
+			children = (
+				9C175BD128B60C6C00293DA7 /* AY38910ToDo.txt */,
+				9C175BD028B60C6C00293DA7 /* README.md */,
+				9C5082A225DDBA3C00A8E1BA /* History.txt */,
+				9C50829D25DDBA3C00A8E1BA /* Version.h */,
+				9C50829F25DDBA3C00A8E1BA /* AY38910.h */,
+				9C5082A025DDBA3C00A8E1BA /* AY38910.i */,
+				9C50829E25DDBA3C00A8E1BA /* AY38910.s */,
+			);
+			path = AY38910;
+			sourceTree = "<group>";
+		};
+		9C5082A425DDBB9E00A8E1BA /* SonSonVideo */ = {
+			isa = PBXGroup;
+			children = (
+				9C5082AA25DDBB9E00A8E1BA /* SonSonVideo_todo.txt */,
+				9C175BD328B60EEA00293DA7 /* README.md */,
+				9C5082A925DDBB9E00A8E1BA /* History.txt */,
+				9C5082A525DDBB9E00A8E1BA /* Version.h */,
+				9C5082A625DDBB9E00A8E1BA /* SonSonVideo.h */,
+				9C5082A825DDBB9E00A8E1BA /* SonSonVideo.i */,
+				9C5082A725DDBB9E00A8E1BA /* SonSonVideo.s */,
+			);
+			path = SonSonVideo;
+			sourceTree = "<group>";
+		};
+		A48CC0251618E65200465E20 /* source */ = {
+			isa = PBXGroup;
+			children = (
+				9C50827925D8862C00A8E1BA /* ARM6809 */,
+				9C5082A425DDBB9E00A8E1BA /* SonSonVideo */,
+				9C50829C25DDBA3C00A8E1BA /* AY38910 */,
+				9C41DDB422C7ECF200BD4C64 /* Shared */,
+				9C50825625D6A9DC00A8E1BA /* Emubase.h */,
+				9C50825725D6A9DC00A8E1BA /* Equates.h */,
+				9C41DD9822C7E4F100BD4C64 /* Main.h */,
+				35BA496A1886BBE3006870D9 /* Main.c */,
+				9C41DD9722C7E4F100BD4C64 /* GUI.h */,
+				9C41DD9922C7E4F100BD4C64 /* GUI.c */,
+				9C9CA7A625F26F7F00DC6DF5 /* SonSon.h */,
+				9C9CA7A525F26F7F00DC6DF5 /* SonSon.c */,
+				9C50825A25D6A9F400A8E1BA /* Cart.h */,
+				9C50825925D6A9F400A8E1BA /* Cart.s */,
+				9C41DDC622C7EEB300BD4C64 /* cpu.h */,
+				9C41DDBE22C7EEB300BD4C64 /* cpu.s */,
+				9C41DDC322C7EEB300BD4C64 /* io.h */,
+				359247301E4E695B00A12B3E /* io.s */,
+				9C50825C25D6A9F400A8E1BA /* Sound.h */,
+				9C50825D25D6A9F400A8E1BA /* Sound.s */,
+				9C41DDC222C7EEB300BD4C64 /* Gfx.h */,
+				9C50825B25D6A9F400A8E1BA /* Gfx.s */,
+				9C50825825D6A9F400A8E1BA /* Memory.s */,
+				9C41DDC022C7EEB300BD4C64 /* FileHandling.h */,
+				9C41DDBF22C7EEB300BD4C64 /* FileHandling.c */,
+			);
+			path = source;
+			sourceTree = "<group>";
+		};
+		A4E891981889C882007ED6D7 /* graphics */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = graphics;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXLegacyTarget section */
+		A45BB8C91618FB840009569D /* SonSonGBA */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "$(ACTION)";
+			buildConfigurationList = A45BB8CC1618FB840009569D /* Build configuration list for PBXLegacyTarget "SonSonGBA" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			dependencies = (
+			);
+			name = SonSonGBA;
+			passBuildSettingsInEnvironment = 1;
+			productName = NitroGrafx;
+		};
+/* End PBXLegacyTarget section */
+
+/* Begin PBXProject section */
+		742141B414E7EA40003EBFD3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0410;
+			};
+			buildConfigurationList = 742141B714E7EA40003EBFD3 /* Build configuration list for PBXProject "SonSonGBA" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 742141B214E7EA40003EBFD3;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A45BB8C91618FB840009569D /* SonSonGBA */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		742141B514E7EA40003EBFD3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVKITARM = "$(DEVKITPRO)/devkitARM";
+				DEVKITPRO = /opt/devkitpro;
+			};
+			name = Debug;
+		};
+		742141B614E7EA40003EBFD3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVKITARM = "$(DEVKITPRO)/devkitARM";
+				DEVKITPRO = /opt/devkitpro;
+			};
+			name = Release;
+		};
+		A45BB8CA1618FB840009569D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = SonSonGBA;
+			};
+			name = Debug;
+		};
+		A45BB8CB1618FB840009569D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = SonSonGBA;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		742141B714E7EA40003EBFD3 /* Build configuration list for PBXProject "SonSonGBA" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				742141B514E7EA40003EBFD3 /* Debug */,
+				742141B614E7EA40003EBFD3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A45BB8CC1618FB840009569D /* Build configuration list for PBXLegacyTarget "SonSonGBA" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A45BB8CA1618FB840009569D /* Debug */,
+				A45BB8CB1618FB840009569D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 742141B414E7EA40003EBFD3 /* Project object */;
+}

@@ -1,0 +1,24 @@
+SonSonGBA To do
+---------------
+
+
+
+Misc:
+	New setting to auto save settings? ;)
+	Show Coin counter?
+
+Graphic:
+	Add support for screen-flip.
+	Set top 4 rows fixed in unscaled mode.
+
+CPU:
+	Timing?
+
+GUI:
+
+Sound:
+	Add other M6809.
+	Hook up AY38910.
+
+Games:
+

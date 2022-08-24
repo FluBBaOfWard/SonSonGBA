@@ -1,0 +1,7 @@
+build
+include/sonson
+*.elf
+*.gba
+*.sav
+SonSonGBA.xcodeproj/project.xcworkspace/xcuserdata
+SonSonGBA.xcodeproj/xcuserdata
