@@ -1,4 +1,4 @@
-SonSonGBA V0.1.5
+SonSonGBA V0.1.6
 --------------------------------------------------------------------------------
 This is a Son Son - Arcade emulator for the GBA.
 It has bugs in the sprite rendering, no tile priority, and no screenflip
@@ -38,8 +38,6 @@ Display:
 		Unscaled mode:  L & R buttons scroll the screen up and down.
 	Scaling: Here you can select if you want flicker or barebones lineskip.
 	Gamma: Lets you change the gamma ("brightness").
-	Disable Background: Turn on/off background rendering.
-	Disable Sprites: Turn on/off sprite rendering.
 ---------
 Settings:
 ---------
@@ -52,15 +50,21 @@ Settings:
 		Automagically load the savestate associated with the selected game.
 	Autosave Settings: Saves changed settings every time you leave menu.
 	Autopause Game: Toggle if the game should pause when opening the menu.
-	Debug Output: Show an FPS meter for now.
 	Autosleep: Choose between 5 min, 10 min, 30 min & off.
+--------
+Debug:
+--------
+	Debug Output: Show an FPS meter for now.
+	Disable Background: Turn on/off background rendering.
+	Disable Sprites: Turn on/off sprite rendering.
+	Step Frame: Emulate one frame.
 ------------
 Dipswitches:
 ------------
 	Lot of settings for the actual arcade game, difficulty/lives etc.
------
-Help:
------
+------
+About:
+------
 	Some dumb info about the game and emulator...
 ------
 Sleep:

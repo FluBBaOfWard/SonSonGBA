@@ -1,7 +1,7 @@
 #ifdef __arm__
 
 #include "Shared/gba_asm.h"
-#include "Equates.h"
+#include "Shared/EmuSettings.h"
 #include "ARM6809/ARM6809.i"
 #include "SonSonVideo/SonSonVideo.i"
 

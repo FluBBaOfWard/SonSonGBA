@@ -10,7 +10,7 @@
 #include "Emubase.h"
 #include "Main.h"
 #include "Shared/EmuMenu.h"
-#include "GUI.h"
+#include "Gui.h"
 #include "SonSon.h"
 #include "Cart.h"
 #include "Gfx.h"
@@ -22,18 +22,6 @@ static const char *const settingName = "settings.cfg";
 ConfigData cfg;
 
 #define GAMECOUNT (2)
-static const int gameCount = GAMECOUNT;
-static const char *const gameNames[GAMECOUNT] = {"sonson","sonsonj"};
-static const char *const gameZipNames[GAMECOUNT] = {"sonson.zip","sonsonj.zip"};
-static const int fileCount[GAMECOUNT] = {17,20};
-static const char *const romFilenames[GAMECOUNT][20] = {
-	{"ss.01e","ss.02e","ss.03e", "ss_6.c11", "ss_7.b6","ss_8.b5", "ss_9.m5","ss_10.m6","ss_11.m3","ss_12.m4","ss_13.m1","ss_14.m2", "ssb4.b2","ssb5.b1","ssb2.c4","ssb3.h7","ssb1.k11"},
-	{"ss_0.l9","ss_1.j9","ss_2.l8","ss_3.j8","ss_4.l7","ss_5.j7", "ss_6.c11", "ss_7.b6","ss_8.b5", "ss_9.m5","ss_10.m6","ss_11.m3","ss_12.m4","ss_13.m1","ss_14.m2", "ssb4.b2","ssb5.b1","ssb2.c4","ssb3.h7","ssb1.k11"}
-};
-static const int romFilesizes[GAMECOUNT][20] = {
-	{0x4000,0x4000,0x4000, 0x2000, 0x2000,0x2000, 0x2000,0x2000,0x2000,0x2000,0x2000,0x2000, 0x0020,0x0020,0x0100,0x0100,0x0100},
-	{0x2000,0x2000,0x2000,0x2000,0x2000,0x2000, 0x2000, 0x2000,0x2000, 0x2000,0x2000,0x2000,0x2000,0x2000,0x2000, 0x0020,0x0020,0x0100,0x0100,0x0100}
-};
 
 //---------------------------------------------------------------------------------
 int loadSettings() {

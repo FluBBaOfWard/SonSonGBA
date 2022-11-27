@@ -3,7 +3,7 @@
 #include "Main.h"
 #include "Shared/EmuMenu.h"
 #include "Shared/AsmExtra.h"
-#include "GUI.h"
+#include "Gui.h"
 #include "EmuFont.h"
 #include "Cart.h"
 #include "cpu.h"
@@ -127,7 +127,7 @@ static void setupGraphics() {
 
 	// Set up background 3 for menu
 	REG_BG3CNT = TEXTBG_SIZE_512x256 | BG_MAP_BASE(6) | BG_TILE_BASE(0) | BG_PRIORITY(0);
-	menuMap = (u16 *)SCREEN_BASE_BLOCK(6);
+	menuMap = MAP_BASE_ADR(6);
 
 	LZ77UnCompVram(EmuFontTiles, (void *)VRAM+0x2400);
 	setupMenuPalette();

@@ -4,10 +4,11 @@
 #include "ARM6809/ARM6809mac.h"
 #include "SonSonVideo/SonSonVideo.i"
 
-#define CYCLE_PSL (95)
+#define CYCLE_PSL (96)
 
-	.global cpuReset
 	.global run
+	.global stepFrame
+	.global cpuReset
 	.global frameTotal
 	.global waitMaskIn
 	.global waitMaskOut
@@ -20,7 +21,7 @@
 	.section .ewram,"ax"
 	.align 2
 ;@----------------------------------------------------------------------------
-run:		;@ Return after 1 frame
+run:						;@ Return after X frame(s)
 	.type   run STT_FUNC
 ;@----------------------------------------------------------------------------
 	ldrh r0,waitCountIn
@@ -58,14 +59,14 @@ runStart:
 ;@----------------------------------------------------------------------------
 sonFrameLoop:
 ;@----------------------------------------------------------------------------
+	mov r0,#CYCLE_PSL
+	bl m6809RunXCycles
 	ldr sonptr,=sonVideo_0
 	bl doScanline
 	cmp r0,#0
-	movne r0,#CYCLE_PSL
-	bne m6809RunXCycles
+	bne sonFrameLoop
 	b sonEnd
 ;@----------------------------------------------------------------------------
-
 	.section .ewram,"ax"
 sonEnd:
 	add r0,m6809optbl,#m6809Regs
@@ -89,14 +90,14 @@ sonEnd:
 	b runStart
 
 ;@----------------------------------------------------------------------------
-soundCpuSetIRQ:					;@ Timer
+soundCpuSetIRQ:				;@ Timer
 ;@----------------------------------------------------------------------------
 	stmfd sp!,{m6809optbl,lr}
 	ldr m6809optbl,=m6809CPU2
 	bl m6809SetIRQPin
 	ldmfd sp!,{m6809optbl,pc}
 ;@----------------------------------------------------------------------------
-soundCpuSetFIRQ:				;@ Sound latch write/read
+soundCpuSetFIRQ:			;@ Sound latch write/read
 ;@----------------------------------------------------------------------------
 	stmfd sp!,{m6809optbl,lr}
 	ldr m6809optbl,=m6809CPU2
@@ -104,14 +105,43 @@ soundCpuSetFIRQ:				;@ Sound latch write/read
 	ldmfd sp!,{m6809optbl,pc}
 ;@----------------------------------------------------------------------------
 cyclesPerScanline:	.long 0
-frameTotal:			.long 0		;@ Let ui.c see frame count for savestates
+frameTotal:			.long 0		;@ Let Gui.c see frame count for savestates
 waitCountIn:		.byte 0
 waitMaskIn:			.byte 0
 waitCountOut:		.byte 0
 waitMaskOut:		.byte 0
 
 ;@----------------------------------------------------------------------------
-braHack:		;@ BRA -9 (0x20 0xF7), speed hack.
+stepFrame:					;@ Return after 1 frame
+	.type   stepFrame STT_FUNC
+;@----------------------------------------------------------------------------
+	stmfd sp!,{r4-r11,lr}
+
+	ldr m6809optbl,=m6809OpTable
+	add r0,m6809optbl,#m6809Regs
+	ldmia r0,{m6809f-m6809pc,m6809sp}	;@ Restore M6809 state
+;@----------------------------------------------------------------------------
+sonStepLoop:
+;@----------------------------------------------------------------------------
+	mov r0,#CYCLE_PSL
+	bl m6809RunXCycles
+	ldr sonptr,=sonVideo_0
+	bl doScanline
+	cmp r0,#0
+	bne sonStepLoop
+;@----------------------------------------------------------------------------
+	add r0,m6809optbl,#m6809Regs
+	stmia r0,{m6809f-m6809pc,m6809sp}	;@ Save M6809 state
+
+	ldr r1,frameTotal
+	add r1,r1,#1
+	str r1,frameTotal
+
+	ldmfd sp!,{r4-r11,lr}
+	bx lr
+
+;@----------------------------------------------------------------------------
+braHack:					;@ BRA -9 (0x20 0xF7), speed hack.
 ;@----------------------------------------------------------------------------
 	ldrsb r0,[m6809pc],#1
 	add m6809pc,m6809pc,r0
@@ -119,11 +149,11 @@ braHack:		;@ BRA -9 (0x20 0xF7), speed hack.
 	andeq cycles,cycles,#CYC_MASK
 	fetch 3
 ;@----------------------------------------------------------------------------
-cpuReset:		;@ Called by loadCart/resetGame
+cpuReset:					;@ Called by loadCart/resetGame
 ;@----------------------------------------------------------------------------
 	stmfd sp!,{lr}
 
-;@---Speed - 1.536MHz / 60Hz			;SonSon M6809.
+;@---Speed - 1.5MHz / 55.4Hz / 282 lines	;SonSon M6809.
 	ldr r0,=CYCLE_PSL
 	str r0,cyclesPerScanline
 
@@ -133,11 +163,7 @@ cpuReset:		;@ Called by loadCart/resetGame
 	adr r4,cpuMapData
 	bl map6809Memory
 
-	ldr r0,=sonFrameLoop
-	str r0,[m6809optbl,#m6809NextTimeout]
-	str r0,[m6809optbl,#m6809NextTimeout_]
-
-	mov r0,#0
+	mov r0,m6809optbl
 	bl m6809Reset
 
 	adr r0,braHack
