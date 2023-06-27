@@ -64,8 +64,9 @@ int main(int argc, char **argv) {
 
 /// Waits the supplied number of frames (deprecated).
 void pausVBlank(int count) {
-	while (--count)
+	while (--count) {
 		waitVBlank();
+	}
 }
 
 /// Waits for the next vertical blanking, unless it has already happened since last check.
