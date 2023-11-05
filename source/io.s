@@ -3,11 +3,6 @@
 #include "ARM6809/ARM6809.i"
 #include "SonSonVideo/SonSonVideo.i"
 
-	.global ioReset
-	.global IO_R
-	.global IO_W
-	.global refreshEMUjoypads
-
 	.global joyCfg
 	.global EMUinput
 	.global g_dipSwitch0
@@ -16,6 +11,11 @@
 	.global g_dipSwitch3
 	.global coinCounter0
 	.global coinCounter1
+
+	.global ioReset
+	.global refreshEMUjoypads
+	.global IO_R
+	.global IO_W
 
 	.syntax unified
 	.arm

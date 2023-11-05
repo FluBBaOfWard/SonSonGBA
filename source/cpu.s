@@ -6,19 +6,26 @@
 
 #define CYCLE_PSL (96)
 
-	.global run
-	.global stepFrame
-	.global cpuReset
 	.global frameTotal
 	.global waitMaskIn
 	.global waitMaskOut
-	.global m6809CPU2
+	.global m6809CPU0
+	.global m6809CPU1
+
+	.global run
+	.global stepFrame
+	.global cpuInit
+	.global cpuReset
 
 
 	.syntax unified
 	.arm
 
-	.section .ewram,"ax"
+#ifdef GBA
+	.section .ewram, "ax", %progbits	;@ For the GBA
+#else
+	.section .text						;@ For anything else
+#endif
 	.align 2
 ;@----------------------------------------------------------------------------
 run:						;@ Return after X frame(s)
@@ -50,8 +57,8 @@ runStart:
 
 	bl refreshEMUjoypads		;@ Z=1 if communication ok
 
-	ldr m6809optbl,=m6809OpTable
-	add r0,m6809optbl,#m6809Regs
+	ldr m6809ptr,=m6809CPU0
+	add r0,m6809ptr,#m6809Regs
 	ldmia r0,{m6809f-m6809pc,m6809sp}	;@ Restore M6809 state
 	b sonFrameLoop
 
@@ -69,7 +76,7 @@ sonFrameLoop:
 ;@----------------------------------------------------------------------------
 	.section .ewram,"ax"
 sonEnd:
-	add r0,m6809optbl,#m6809Regs
+	add r0,m6809ptr,#m6809Regs
 	stmia r0,{m6809f-m6809pc,m6809sp}	;@ Save M6809 state
 
 	ldr r1,=fpsValue
@@ -92,17 +99,17 @@ sonEnd:
 ;@----------------------------------------------------------------------------
 soundCpuSetIRQ:				;@ Timer
 ;@----------------------------------------------------------------------------
-	stmfd sp!,{m6809optbl,lr}
-	ldr m6809optbl,=m6809CPU2
+	stmfd sp!,{m6809ptr,lr}
+	ldr m6809ptr,=m6809CPU1
 	bl m6809SetIRQPin
-	ldmfd sp!,{m6809optbl,pc}
+	ldmfd sp!,{m6809ptr,pc}
 ;@----------------------------------------------------------------------------
 soundCpuSetFIRQ:			;@ Sound latch write/read
 ;@----------------------------------------------------------------------------
-	stmfd sp!,{m6809optbl,lr}
-	ldr m6809optbl,=m6809CPU2
+	stmfd sp!,{m6809ptr,lr}
+	ldr m6809ptr,=m6809CPU1
 	bl m6809SetFIRQPin
-	ldmfd sp!,{m6809optbl,pc}
+	ldmfd sp!,{m6809ptr,pc}
 ;@----------------------------------------------------------------------------
 cyclesPerScanline:	.long 0
 frameTotal:			.long 0		;@ Let Gui.c see frame count for savestates
@@ -117,8 +124,8 @@ stepFrame:					;@ Return after 1 frame
 ;@----------------------------------------------------------------------------
 	stmfd sp!,{r4-r11,lr}
 
-	ldr m6809optbl,=m6809OpTable
-	add r0,m6809optbl,#m6809Regs
+	ldr m6809ptr,=m6809CPU0
+	add r0,m6809ptr,#m6809Regs
 	ldmia r0,{m6809f-m6809pc,m6809sp}	;@ Restore M6809 state
 ;@----------------------------------------------------------------------------
 sonStepLoop:
@@ -130,7 +137,7 @@ sonStepLoop:
 	cmp r0,#0
 	bne sonStepLoop
 ;@----------------------------------------------------------------------------
-	add r0,m6809optbl,#m6809Regs
+	add r0,m6809ptr,#m6809Regs
 	stmia r0,{m6809f-m6809pc,m6809sp}	;@ Save M6809 state
 
 	ldr r1,frameTotal
@@ -149,6 +156,16 @@ braHack:					;@ BRA -9 (0x20 0xF7), speed hack.
 	andeq cycles,cycles,#CYC_MASK
 	fetch 3
 ;@----------------------------------------------------------------------------
+cpuInit:			;@ Called by machineInit
+;@----------------------------------------------------------------------------
+	stmfd sp!,{lr}
+	ldr r0,=m6809CPU0
+	bl m6809Init
+	ldr r0,=m6809CPU1
+	bl m6809Init
+	ldmfd sp!,{lr}
+	bx lr
+;@----------------------------------------------------------------------------
 cpuReset:					;@ Called by loadCart/resetGame
 ;@----------------------------------------------------------------------------
 	stmfd sp!,{lr}
@@ -158,16 +175,16 @@ cpuReset:					;@ Called by loadCart/resetGame
 	str r0,cyclesPerScanline
 
 ;@--------------------------------------
-	ldr m6809optbl,=m6809OpTable
+	ldr m6809ptr,=m6809CPU0
 
 	adr r4,cpuMapData
 	bl map6809Memory
 
-	mov r0,m6809optbl
+	mov r0,m6809ptr
 	bl m6809Reset
 
 	adr r0,braHack
-	str r0,[m6809optbl,#0x20*4]
+	str r0,[m6809ptr,#0x20*4]
 
 	ldmfd sp!,{lr}
 	bx lr
@@ -198,10 +215,15 @@ m6809DataLoop:
 	ldmfd sp!,{pc}
 ;@----------------------------------------------------------------------------
 #ifdef NDS
-	.section .dtcm, "ax", %progbits				;@ For the NDS
+	.section .dtcm, "ax", %progbits		;@ For the NDS
+#elif GBA
+	.section .iwram, "ax", %progbits	;@ For the GBA
 #endif
+	.align 2
 ;@----------------------------------------------------------------------------
-m6809CPU2:
+m6809CPU0:
+	.space m6809Size
+m6809CPU1:
 	.space m6809Size
 ;@----------------------------------------------------------------------------
 	.end

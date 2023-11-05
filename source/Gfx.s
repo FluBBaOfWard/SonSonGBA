@@ -5,22 +5,22 @@
 #include "ARM6809/ARM6809.i"
 #include "SonSonVideo/SonSonVideo.i"
 
+	.global gFlicker
+	.global gTwitch
+	.global gScaling
+	.global gGfxMask
+	.global yStart
+	.global gfxState
+	.global EMUPALBUFF
+	.global sonVideo_0
+
 	.global gfxInit
 	.global gfxReset
 	.global paletteInit
 	.global paletteTxAll
 	.global refreshGfx
-	.global EMUPALBUFF
 	.global endFrame
-	.global gfxState
-	.global gFlicker
-	.global gTwitch
-	.global gScaling
-	.global gGfxMask
 	.global vblIrqHandler
-	.global yStart
-
-	.global sonVideo_0
 
 
 	.syntax unified

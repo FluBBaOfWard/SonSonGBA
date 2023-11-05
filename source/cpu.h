@@ -9,10 +9,12 @@ extern "C" {
 
 extern u8 waitMaskIn;
 extern u8 waitMaskOut;
-extern ARM6809Core m6809CPU2;
+extern ARM6809Core m6809CPU0;
+extern ARM6809Core m6809CPU1;
 
 void run(void);
 void stepFrame(void);
+void cpuInit(void);
 void cpuReset(void);
 
 #ifdef __cplusplus

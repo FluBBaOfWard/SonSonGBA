@@ -5,6 +5,10 @@
 
 #define MIX_LEN (528)
 
+	.global ay38910_0
+	.global ay38910_1
+	.extern pauseEmulation
+
 	.global soundInit
 	.global soundReset
 	.global vblSound1
@@ -13,10 +17,6 @@
 	.global setMuteSoundGame
 	.global soundWriteAY0
 	.global soundWriteAY1
-
-	.global ay38910_0
-	.global ay38910_1
-	.extern pauseEmulation
 
 
 	.syntax unified

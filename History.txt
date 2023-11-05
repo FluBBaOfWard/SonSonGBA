@@ -2,7 +2,7 @@ SonSonGBA revision history
 -=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 
-V0.1.6 - 2021-11-27 (FluBBa)
+V0.1.6 - 2023-11-05 (FluBBa)
 	Added new debug menu.
 	Better menu traversing.
 

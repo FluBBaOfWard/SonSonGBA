@@ -16,8 +16,8 @@ int packState(void *statePtr) {
 	size += ay38910SaveState(statePtr+size, &ay38910_1);
 	size += ay38910SaveState(statePtr+size, &ay38910_0);
 	size += sonSaveState(statePtr+size, &sonVideo_0);
-	size += m6809SaveState(statePtr+size, &m6809CPU2);
-	size += m6809SaveState(statePtr+size, &m6809OpTable);
+	size += m6809SaveState(statePtr+size, &m6809CPU1);
+	size += m6809SaveState(statePtr+size, &m6809CPU0);
 	return size;
 }
 
@@ -28,8 +28,8 @@ void unpackState(const void *statePtr) {
 	size += ay38910LoadState(&ay38910_1, statePtr+size);
 	size += ay38910LoadState(&ay38910_0, statePtr+size);
 	size += sonLoadState(&sonVideo_0, statePtr+size);
-	size += m6809LoadState(&m6809CPU2, statePtr+size);
-	m6809LoadState(&m6809OpTable, statePtr+size);
+	size += m6809LoadState(&m6809CPU1, statePtr+size);
+	m6809LoadState(&m6809CPU0, statePtr+size);
 }
 
 int getStateSize() {
