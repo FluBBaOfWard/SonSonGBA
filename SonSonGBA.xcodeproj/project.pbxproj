@@ -22,7 +22,6 @@
 		9C41DD9722C7E4F100BD4C64 /* Gui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gui.h; sourceTree = "<group>"; };
 		9C41DD9822C7E4F100BD4C64 /* Main.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Main.h; sourceTree = "<group>"; };
 		9C41DD9922C7E4F100BD4C64 /* Gui.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Gui.c; sourceTree = "<group>"; };
-		9C41DD9D22C7EADB00BD4C64 /* readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.txt; sourceTree = "<group>"; };
 		9C41DD9E22C7EADB00BD4C64 /* History.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = History.txt; sourceTree = "<group>"; };
 		9C41DDB522C7ECF200BD4C64 /* EmuMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmuMenu.h; sourceTree = "<group>"; };
 		9C41DDB822C7ECF200BD4C64 /* AsmExtra.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = AsmExtra.s; sourceTree = "<group>"; };
@@ -62,6 +61,7 @@
 		9C5082AA25DDBB9E00A8E1BA /* SonSonVideo_todo.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SonSonVideo_todo.txt; sourceTree = "<group>"; };
 		9C9CA7A525F26F7F00DC6DF5 /* SonSon.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SonSon.c; sourceTree = "<group>"; };
 		9C9CA7A625F26F7F00DC6DF5 /* SonSon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SonSon.h; sourceTree = "<group>"; };
+		9CB421812CF8E2BA00FF4F8A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -70,7 +70,7 @@
 			children = (
 				9C5082A325DDBB8200A8E1BA /* SonSonGBA_todo.txt */,
 				9C41DD9E22C7EADB00BD4C64 /* History.txt */,
-				9C41DD9D22C7EADB00BD4C64 /* readme.txt */,
+				9CB421812CF8E2BA00FF4F8A /* README.md */,
 				746D78E014ED9A6D00CC738F /* makefile */,
 				A48CC0251618E65200465E20 /* source */,
 				A4E891981889C882007ED6D7 /* graphics */,

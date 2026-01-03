@@ -5,6 +5,8 @@
 extern "C" {
 #endif
 
+#define GAME_COUNT (2)
+
 /// This runs all save state functions for each chip.
 int packState(void *statePtr);
 

@@ -2,9 +2,10 @@ SonSonGBA revision history
 -=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 
-V0.1.6 - 2023-11-05 (FluBBa)
+V0.2.0 - 2026-01-04 (FluBBa)
 	Added new debug menu.
 	Better menu traversing.
+	Updated cpu core.
 
 V0.1.5 - 2021-03-17 (FluBBa)
 	Added load/save state.

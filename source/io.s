@@ -5,13 +5,14 @@
 
 	.global joyCfg
 	.global EMUinput
-	.global g_dipSwitch0
-	.global g_dipSwitch1
-	.global g_dipSwitch2
-	.global g_dipSwitch3
+	.global gDipSwitch0
+	.global gDipSwitch1
+	.global gDipSwitch2
+	.global gDipSwitch3
 	.global coinCounter0
 	.global coinCounter1
 
+	.global ioInit
 	.global ioReset
 	.global refreshEMUjoypads
 	.global IO_R
@@ -22,6 +23,9 @@
 
 	.section .ewram,"ax"
 	.align 2
+;@----------------------------------------------------------------------------
+ioInit:
+;@----------------------------------------------------------------------------
 ;@----------------------------------------------------------------------------
 ioReset:
 ;@----------------------------------------------------------------------------
@@ -73,10 +77,10 @@ rlud2lrud:		.byte 0x00,0x08,0x04,0x0C, 0x10,0x18,0x14,0x1C, 0x20,0x28,0x24,0x2C,
 rlud2lrud180:	.byte 0x00,0x04,0x04,0x0C, 0x20,0x24,0x28,0x2C, 0x10,0x14,0x18,0x1C, 0x30,0x34,0x38,0x3C
 rlud2lrud90:	.byte 0x00,0x08,0x04,0x0c, 0x02,0x0a,0x06,0x0e, 0x01,0x09,0x05,0x0d, 0x03,0x0b,0x07,0x0f
 rlud2lrud270:	.byte 0x00,0x04,0x08,0x0c, 0x01,0x05,0x09,0x0d, 0x02,0x06,0x0a,0x0e, 0x03,0x07,0x0b,0x0f
-g_dipSwitch0:	.byte 0
-g_dipSwitch1:	.byte 0x85		;@ Lives, cabinet & demo sound.
-g_dipSwitch2:	.byte 0
-g_dipSwitch3:	.byte 0
+gDipSwitch0:	.byte 0
+gDipSwitch1:	.byte 0x85		;@ Lives, cabinet & demo sound.
+gDipSwitch2:	.byte 0
+gDipSwitch3:	.byte 0
 coinCounter0:	.long 0
 coinCounter1:	.long 0
 
@@ -112,21 +116,21 @@ Input2_R:		;@ Coins, Start & Service
 ;@----------------------------------------------------------------------------
 Input3_R:
 ;@----------------------------------------------------------------------------
-	ldr r0,=g_dipSwitch1
+	ldr r0,=gDipSwitch1
 	ldrb r0,[r0]
 	eor r0,r0,#0xFF
 	bx lr
 ;@----------------------------------------------------------------------------
 Input4_R:
 ;@----------------------------------------------------------------------------
-	ldr r0,=g_dipSwitch2
+	ldr r0,=gDipSwitch2
 	ldrb r0,[r0]
 	eor r0,r0,#0xFF
 	bx lr
 ;@----------------------------------------------------------------------------
 Input5_R:
 ;@----------------------------------------------------------------------------
-	ldr r0,=g_dipSwitch0
+	ldr r0,=gDipSwitch0
 	ldrb r0,[r0]
 	eor r0,r0,#0xFF
 	bx lr

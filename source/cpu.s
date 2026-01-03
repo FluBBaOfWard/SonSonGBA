@@ -9,6 +9,7 @@
 	.global frameTotal
 	.global waitMaskIn
 	.global waitMaskOut
+	.global mainCpuSetIRQ
 	.global m6809CPU0
 	.global m6809CPU1
 
@@ -97,19 +98,20 @@ sonEnd:
 	b runStart
 
 ;@----------------------------------------------------------------------------
+mainCpuSetIRQ:				;@ Frame irq
+;@----------------------------------------------------------------------------
+	ldr r1,=m6809CPU0
+	b m6809SetIRQPin
+;@----------------------------------------------------------------------------
 soundCpuSetIRQ:				;@ Timer
 ;@----------------------------------------------------------------------------
-	stmfd sp!,{m6809ptr,lr}
-	ldr m6809ptr,=m6809CPU1
-	bl m6809SetIRQPin
-	ldmfd sp!,{m6809ptr,pc}
+	ldr r1,=m6809CPU1
+	b m6809SetIRQPin
 ;@----------------------------------------------------------------------------
 soundCpuSetFIRQ:			;@ Sound latch write/read
 ;@----------------------------------------------------------------------------
-	stmfd sp!,{m6809ptr,lr}
-	ldr m6809ptr,=m6809CPU1
-	bl m6809SetFIRQPin
-	ldmfd sp!,{m6809ptr,pc}
+	ldr r1,=m6809CPU1
+	b m6809SetFIRQPin
 ;@----------------------------------------------------------------------------
 cyclesPerScanline:	.long 0
 frameTotal:			.long 0		;@ Let Gui.c see frame count for savestates
@@ -215,9 +217,11 @@ m6809DataLoop:
 	ldmfd sp!,{pc}
 ;@----------------------------------------------------------------------------
 #ifdef NDS
-	.section .dtcm, "ax", %progbits		;@ For the NDS
+	.section .sbss				;@ This is DTCM on NDS with devkitARM
 #elif GBA
-	.section .iwram, "ax", %progbits	;@ For the GBA
+	.section .bss				;@ This is IWRAM on GBA with devkitARM
+#else
+	.section .bss
 #endif
 	.align 2
 ;@----------------------------------------------------------------------------

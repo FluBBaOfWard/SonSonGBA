@@ -2,7 +2,6 @@
 
 #include "Shared/gba_asm.h"
 #include "Shared/EmuSettings.h"
-#include "ARM6809/ARM6809.i"
 #include "SonSonVideo/SonSonVideo.i"
 
 	.global gFlicker
@@ -10,7 +9,6 @@
 	.global gScaling
 	.global gGfxMask
 	.global yStart
-	.global gfxState
 	.global EMUPALBUFF
 	.global sonVideo_0
 
@@ -26,7 +24,11 @@
 	.syntax unified
 	.arm
 
-	.section .ewram,"ax"
+#ifdef GBA
+	.section .ewram, "ax", %progbits	;@ For the GBA
+#else
+	.section .text						;@ For anything else
+#endif
 	.align 2
 ;@----------------------------------------------------------------------------
 gfxInit:					;@ Called from machineInit
@@ -57,7 +59,7 @@ gfxReset:					;@ Called with CPU reset
 	bl memclr_					;@ Clear GFX regs
 
 	ldr sonptr,=sonVideo_0
-	ldr r0,=m6809SetIRQPin		;@ Frame irq
+	ldr r0,=mainCpuSetIRQ		;@ Frame irq
 	mov r1,#0
 	ldr r2,=EMU_RAM
 	bl sonVideoReset
@@ -176,55 +178,55 @@ nomap3:
 vblIrqHandler:
 	.type vblIrqHandler STT_FUNC
 ;@----------------------------------------------------------------------------
-	stmfd sp!,{r4-r8,lr}
+	stmfd sp!,{r4-r6,lr}
 	bl vblSound1
 	bl calculateFPS
 
 	ldrb r0,gScaling
 	cmp r0,#UNSCALED
-	moveq r6,#0
-	ldrne r6,=0x80000000 + ((GAME_HEIGHT-SCREEN_HEIGHT)*0x10000) / (SCREEN_HEIGHT-1)	;@ NDS 0x2B10 (was 0x2AAB)
+	moveq r5,#0
+	ldrne r5,=0x80000000 + ((GAME_HEIGHT-SCREEN_HEIGHT)*0x10000) / (SCREEN_HEIGHT-1)	;@ NDS 0x2B10 (was 0x2AAB)
 	ldrbeq r4,yStart
 	movne r4,#0
 	add r4,r4,#0x08
-	mov r7,r4,lsl#16
-	orr r7,r7,#8
+	mov r2,r4,lsl#16
+	orr r2,r2,#(256-SCREEN_WIDTH)/2
 
 	ldr r0,gFlicker
 	eors r0,r0,r0,lsl#31
 	str r0,gFlicker
-	addpl r6,r6,r6,lsl#16
+	addpl r5,r5,r5,lsl#16
 
-	ldr r5,=SCROLLBUFF
-	mov r0,r5
+	ldr r0,=SCROLLBUFF
+	mov r1,r0
 
-	ldr r1,=scrollTemp
-	add r1,r1,r4,lsl#2
+	ldr r6,=scrollTemp
+	add r4,r6,r4,lsl#2
 	mov r12,#SCREEN_HEIGHT
 scrolLoop2:
-	ldr r2,[r1],#4
-	add r2,r2,r7
-	mov r3,r2
-	stmia r0!,{r2,r3}
-	adds r6,r6,r6,lsl#16
-	addcs r7,r7,#0x10000
-	addcs r1,r1,#4
+	ldr r6,[r4],#4
+	add r6,r6,r2
+	mov r3,r6
+	stmia r0!,{r3,r6}
+	adds r5,r5,r5,lsl#16
+	addcs r2,r2,#0x10000
+	addcs r4,r4,#4
 	subs r12,r12,#1
 	bne scrolLoop2
 
 
-	mov r6,#REG_BASE
-	strh r6,[r6,#REG_DMA0CNT_H]	;@ DMA0 stop
+	mov r5,#REG_BASE
+	strh r5,[r5,#REG_DMA0CNT_H]	;@ DMA0 stop
 
-	add r0,r6,#REG_DMA0SAD
-	mov r1,r5					;@ DMA0 src, scrolling:
+	add r0,r5,#REG_DMA0SAD
+//	mov r1,r1					;@ DMA0 src, scrolling:
 	ldmia r1!,{r3-r4}			;@ Read
-	add r2,r6,#REG_BG0HOFS		;@ DMA0 dst
+	add r2,r5,#REG_BG0HOFS		;@ DMA0 dst
 	stmia r2,{r3-r4}			;@ Set 1st values manually, HBL is AFTER 1st line
 	ldr r3,=0xA6600002			;@ noIRQ hblank 32bit repeat incsrc inc_reloaddst, 2 word
 	stmia r0,{r1-r3}			;@ DMA0 go
 
-	add r0,r6,#REG_DMA3SAD
+	add r0,r5,#REG_DMA3SAD
 
 	ldr r1,dmaOamBuffer			;@ DMA3 src, OAM transfer:
 	mov r2,#OAM					;@ DMA3 dst
@@ -241,11 +243,11 @@ scrolLoop2:
 	mov r0,#0x0039
 	ldrb r1,gGfxMask
 	bic r0,r0,r1
-	strh r0,[r6,#REG_WININ]
+	strh r0,[r5,#REG_WININ]
 
 	bl scanKeys
 	bl vblSound2
-	ldmfd sp!,{r4-r8,lr}
+	ldmfd sp!,{r4-r6,lr}
 	bx lr
 
 
@@ -312,7 +314,12 @@ windowTop:
 	.byte 0
 	.byte 0,0
 
-	.section .sbss
+#ifdef GBA
+	.section .sbss				;@ This is EWRAM on GBA with devkitARM
+#else
+	.section .bss
+#endif
+	.align 2
 scrollTemp:
 	.space 0x400*2
 OAM_BUFFER1:

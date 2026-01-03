@@ -186,7 +186,7 @@ soundMode:
 	.byte 0
 	.space 3
 
-	.section .sbss
+	.section .sbss				;@ This is EWRAM on GBA with devkitARM
 	.align 2
 ay38910_0:
 	.space aySize

@@ -43,9 +43,9 @@ int loadSettings() {
 		return 1;
 	}
 */
-	g_dipSwitch0 = cfg.dipSwitch0;
-	g_dipSwitch1 = cfg.dipSwitch1;
-	g_dipSwitch2 = cfg.dipSwitch2;
+	gDipSwitch0 = cfg.dipSwitch0;
+	gDipSwitch1 = cfg.dipSwitch1;
+	gDipSwitch2 = cfg.dipSwitch2;
 	gScaling    = cfg.scaling&1;
 	gFlicker    = cfg.flicker&1;
 	gGammaValue = cfg.gammaValue;
@@ -61,9 +61,9 @@ void saveSettings() {
 //	FILE *file;
 
 	strcpy(cfg.magic,"cfg");
-	cfg.dipSwitch0  = g_dipSwitch0;
-	cfg.dipSwitch1  = g_dipSwitch1;
-	cfg.dipSwitch2  = g_dipSwitch2;
+	cfg.dipSwitch0  = gDipSwitch0;
+	cfg.dipSwitch1  = gDipSwitch1;
+	cfg.dipSwitch2  = gDipSwitch2;
 	cfg.scaling     = gScaling&1;
 	cfg.flicker     = gFlicker&1;
 	cfg.gammaValue  = gGammaValue;

@@ -2,10 +2,18 @@
 
 #include "Shared/gba_asm.h"
 #include "Shared/EmuSettings.h"
-#include "ARM6809/ARM6809mac.h"
+#include "ARM6809/ARM6809.i"
 #include "SonSonVideo/SonSonVideo.i"
 
+	.global romNum
+	.global emuFlags
+	.global cartFlags
+	.global romStart
+	.global vromBase0
+	.global vromBase1
+	.global promsBase
 	.global soundCpuRam
+	.global NV_RAM
 	.global EMU_RAM
 	.global ROM_Space
 	.global testState
@@ -13,14 +21,6 @@
 	.global machineInit
 	.global loadCart
 	.global m6809Mapper
-	.global emuFlags
-	.global romNum
-	.global cartFlags
-	.global romStart
-	.global vromBase0
-	.global vromBase1
-	.global promsBase
-
 
 
 	.syntax unified
@@ -174,11 +174,6 @@ tbLoop3:
 	ldmfd sp!,{r4-r11,lr}
 	bx lr
 
-
-;@----------------------------------------------------------------------------
-//	.section itcm
-;@----------------------------------------------------------------------------
-
 ;@----------------------------------------------------------------------------
 m6809Mapper:		;@ Rom paging..
 ;@----------------------------------------------------------------------------
@@ -216,7 +211,7 @@ m6809MemAps:
 ;@------------------------------------------
 m6809Flush:		;@ Update cpu_pc & lastbank
 ;@------------------------------------------
-	reEncodePC
+//	reEncodePC
 
 	ldmfd sp!,{r3-r8,lr}
 	bx lr
@@ -236,6 +231,7 @@ cartFlags:
 	.space 3
 
 romStart:
+mainCpu:
 	.long 0
 vromBase0:
 	.long 0
@@ -247,7 +243,12 @@ promsBase:
 	.long 0
 	.pool
 
-	.section .sbss
+#ifdef GBA
+	.section .sbss				;@ This is EWRAM on GBA with devkitARM
+#else
+	.section .bss
+#endif
+	.align 2
 WRMEMTBL_:
 	.space 256*4
 RDMEMTBL_:
@@ -256,6 +257,7 @@ MEMMAPTBL_:
 	.space 256*4
 soundCpuRam:
 	.space 0x0800
+NV_RAM:
 EMU_RAM:
 	.space 0x2060				;@ Actually 0x1800 + 0x60
 testState:
